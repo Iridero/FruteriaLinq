@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace FruteriaLinq
 {
+    [Serializable]
     public class Categoria
     {
         private int id;

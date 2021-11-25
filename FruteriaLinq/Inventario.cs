@@ -10,6 +10,18 @@ namespace FruteriaLinq
 {
     public class Inventario
     {
+        string rutaCategoria = "categorias.dat";
+        public Inventario()
+        {
+            if (File.Exists(rutaCategoria))
+            {
+                CargarCategoria();
+            }
+            else
+            {
+                Categorias = new List<Categoria>();
+            }
+        }
         public List<Categoria> Categorias { get; private set; }
         /// <summary>
         /// Agrega una categoría a la lista de categorías
@@ -28,7 +40,7 @@ namespace FruteriaLinq
             }
             else
             {
-                int id = Categorias.Select(cat => cat.Id).Last();
+                int id = Categorias.Select(cat => cat.Id).LastOrDefault();
                 id++;
                 Categorias.Add(
                     new Categoria
@@ -42,9 +54,9 @@ namespace FruteriaLinq
         }
 
 
-        public void Guardar(string Ruta)
+        public void GuardarCategorias()
         {
-            FileStream fs = new FileStream(Ruta, FileMode.Create);
+            FileStream fs = new FileStream(rutaCategoria, FileMode.Create);
             BinaryFormatter formatter = new BinaryFormatter();
 
             try
@@ -62,11 +74,11 @@ namespace FruteriaLinq
 
         }
 
-        public void Cargar(string Ruta)
+        public void CargarCategoria()
         {
-            if (File.Exists(Ruta))
+            if (File.Exists(rutaCategoria))
             {
-                FileStream fs = new FileStream(Ruta, FileMode.Open);
+                FileStream fs = new FileStream(rutaCategoria, FileMode.Open);
                 try
                 {
                     BinaryFormatter formatter = new BinaryFormatter();
