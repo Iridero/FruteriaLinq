@@ -23,6 +23,10 @@ namespace FruteriaLinq
             }
         }
         public List<Categoria> Categorias { get; private set; }
+
+        public List<Producto> Productos { get; private set; }
+
+
         /// <summary>
         /// Agrega una categoría a la lista de categorías
         /// </summary>
@@ -94,5 +98,10 @@ namespace FruteriaLinq
                 }
             }
         }
+    public List<string> UnidadesMedida()
+        {
+            return Productos.OrderBy(p => p.UnidadMedida).Select(p => p.UnidadMedida).ToList();
+        }
+
     }
 }
