@@ -57,6 +57,29 @@ namespace FruteriaLinq
             }
         }
 
+        public void ActualizarCategoría(int id, string nombre, bool eliminada)
+        {
+            var cat = Categorias.FirstOrDefault(c => c.Id == id);
+            if (cat!=null)
+            {
+                if (cat.Nombre==nombre)
+                {
+                    cat.Eliminada = eliminada;
+                }
+                else
+                {
+                    if (Categorias.Any(c=>c.Nombre==nombre))
+                    {
+                        throw new ArgumentException("El nombre ya esta registrado");
+                    }
+                    else
+                    {
+                        cat.Nombre = nombre;
+                        cat.Eliminada = eliminada;
+                    }
+                }
+            }
+        }
 
         public void GuardarCategorias()
         {

@@ -57,5 +57,20 @@ namespace FruteriaLinq
                 chkEliminada.Checked = cat.Eliminada; 
             }
         }
+
+        private void btnActualizar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Inventario.ActualizarCategoría(
+                       ((Categoria)lstCategorias.SelectedItem).Id,
+                       txtNombre.Text.Trim(), chkEliminada.Checked);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+             
+            }
+        }
     }
 }
