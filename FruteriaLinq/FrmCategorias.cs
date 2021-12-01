@@ -51,8 +51,11 @@ namespace FruteriaLinq
         private void lstCategorias_SelectedIndexChanged(object sender, EventArgs e)
         {
             Categoria cat = (Categoria)lstCategorias.SelectedItem;
-            txtNombre.Text = cat.Nombre;
-            chkEliminada.Checked = cat.Eliminada;
+            if (cat!=null)
+            {
+                txtNombre.Text = cat.Nombre;
+                chkEliminada.Checked = cat.Eliminada; 
+            }
         }
     }
 }
